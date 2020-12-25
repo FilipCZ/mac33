@@ -20,13 +20,13 @@ jobs:
         sudo dscl . -create /Users/vncuser UniqueID 1001
         sudo dscl . -create /Users/vncuser PrimaryGroupID 80
         sudo dscl . -create /Users/vncuser NFSHomeDirectory /Users/vncuser
-        sudo dscl . -passwd /Users/vncuser $Env:VNC_USER_PASSWORD
-        sudo dscl . -passwd /Users/vncuser $Env:VNC_USER_PASSWORD
+        sudo dscl . -passwd /Users/vncuser $VNC_USER_PASSWORD
+        sudo dscl . -passwd /Users/vncuser $VNC_USER_PASSWORD
         sudo createhomedir -c -u vncuser > /dev/null
         sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -configure -allowAccessFor -allUsers -privs -all
         sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -configure -clientopts -setvnclegacy -vnclegacy yes
         sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -restart -agent -console
         sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -activate
         brew install --cask ngrok
-        ngrok authtoken $Env:NGROK_AUTH_TOKEN
+        ngrok authtoken $NGROK_AUTH_TOKEN
         ngrok tcp --region=eu 5900 &
